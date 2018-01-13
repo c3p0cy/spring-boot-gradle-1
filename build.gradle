@@ -1,1 +1,10 @@
 apply plugin: 'java'
+
+/*
+ * 使用Gradle Wrapper有以下好處：
+ * - 不用安裝gradle也能運行gradle
+ * - 所有人使用相同的gradle版本
+ */
+task wrapper(type: Wrapper) {
+    gradleVersion = '4.4.1'
+}
