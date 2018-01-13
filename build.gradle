@@ -1,10 +1,38 @@
+buildscript {
+    repositories {
+        jcenter()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:1.5.9.RELEASE")
+    }
+}
+
+repositories {
+    jcenter()
+}
+
 apply plugin: 'java'
+apply plugin: 'org.springframework.boot'
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
 
 /*
  * 使用Gradle Wrapper有以下好處：
  * - 不用安裝gradle也能運行gradle
  * - 所有人使用相同的gradle版本
+ *
+ * 使用 gradle wrapper 後會產生：gradlew、gradlew.bat 和 gradle 目錄:
+ * - 這三個文件（夾）都需要提交到代碼庫中！如此在沒有安裝 Gradle 時，
+ *   也可以透過 gradlew buiild 來進行專案建置。
+ * - 如此持續集成（CI）的CI機器也沒有必要安裝 Gradle 了。
+ * - 此時所有人都是使用的相同版本的 gradle，進而避免了由於版本不同所帶來的問題。
  */
 task wrapper(type: Wrapper) {
     gradleVersion = '4.4.1'
+}
+
+dependencies {
+    compile("org.springframework.boot:spring-boot-starter-web")
+    testCompile("org.springframework.boot:spring-boot-starter-test")
 }
