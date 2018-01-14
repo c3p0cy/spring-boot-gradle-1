@@ -36,3 +36,28 @@ dependencies {
     compile("org.springframework.boot:spring-boot-starter-web")
     testCompile("org.springframework.boot:spring-boot-starter-test")
 }
+
+/* ========================================= */
+// 默認的 src/test/java 目錄用於單元測試，通過 ./gradlew test 執行
+// 新建 src/apiTest/java 目錄用於 API 測試，通過 ./gradlew apiTest 執行
+// SourceSet 對應 src/apiTest/java 目錄
+sourceSets {
+    apiTest {
+        compileClasspath += main.output + test.output
+        runtimeClasspath += main.output + test.output
+    }
+}
+
+configurations {
+    apiTestCompile.extendsFrom testCompile
+    apiTestRuntime.extendsFrom testRuntime
+}
+
+// 用於運行 src/apiTest/java 目錄下的 API 測試程式碼
+task apiTest(type: Test) {
+    testClassesDir = sourceSets.apiTest.output.getClassesDirs()
+    classpath = sourceSets.apiTest.runtimeClasspath
+}
+
+apiTest.mustRunAfter test // API Test 必須運行在單元測試之後
+build.dependsOn apiTest // 將 API Test 包含在 build 任務中。
