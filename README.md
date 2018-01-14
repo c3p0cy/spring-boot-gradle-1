@@ -10,11 +10,11 @@ Gradle Wrapper:
      * 所有人使用相同的 gradle 版本
   *  Step:
     1. Add Task:
-       ```groovy
+        ```groovy
        task wrapper(type: Wrapper) {
            gradleVersion = '4.4.1'
        }
-      ```
+        ```
     2. run: gradle wrapper 
        - 這三個文件（夾）都需要提交到代碼庫中！如此在沒有安裝 Gradle 時，也可以透過 gradlew buiild 來進行專案建置。
        - 如此持續集成（CI）的CI機器也沒有必要安裝 Gradle 了。
