@@ -11,11 +11,28 @@ repositories {
     jcenter()
 }
 
+apply plugin: "jacoco"
 apply plugin: 'java'
 apply plugin: 'org.springframework.boot'
 
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
+
+jacoco {
+    toolVersion = "0.7.9"
+    reportsDir = file("$buildDir/customJacocoReportDir")
+}
+
+jacocoTestReport{
+    reports{
+        xml.enabled false
+        csv.enabled false
+        html.enabled true
+        html.destination "${buildDir}/jacocoHtml"
+        xml.destination "${buildDir}/jacocoXml.xml"
+        csv.destination "${buildDir}/jacocoCsv.csv"
+    }
+}
 
 /*
  * 使用Gradle Wrapper有以下好處：
