@@ -2,7 +2,7 @@ Gralde Practice with Spring Boot
 ----------------------------------------------------------
 Java:
   1. apply plugin: 'java'
-  2. now can run: gradle build, etc. 
+  2. now can run: gradle build 
 ----------------------------------------------------------
 Gradle Wrapper:  
   *  Benefits:   
@@ -10,11 +10,11 @@ Gradle Wrapper:
      * 所有人使用相同的 gradle 版本
   *  Step:
     1. Add Task:
-     ```groovy
-     task wrapper(type: Wrapper) {
-         gradleVersion = '4.4.1'
-     }
-    ```
+       ```groovy
+       task wrapper(type: Wrapper) {
+           gradleVersion = '4.4.1'
+       }
+      ```
     2. run: gradle wrapper 
        - 這三個文件（夾）都需要提交到代碼庫中！如此在沒有安裝 Gradle 時，也可以透過 gradlew buiild 來進行專案建置。
        - 如此持續集成（CI）的CI機器也沒有必要安裝 Gradle 了。
@@ -71,7 +71,7 @@ Code Coverage: jacoco
     ```
 3. run: clean test
 4. run: jacocoTestReport
-5. See the testing result: <your path of project>/build/customJacocoReportDir/test/html/index.html
+5. See the testing result: [your path of project]/build/customJacocoReportDir/test/html/index.html
 
 ----------------------------------------------------------
 ## References:
