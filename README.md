@@ -1,8 +1,8 @@
 Gralde Practice with Spring Boot
 ----------------------------------------------------------
 Java:
-  1. apply plugin: 'java'
-  2. now can run: gradle build 
+    1. apply plugin: 'java'
+    2. now can run: gradle build 
 ----------------------------------------------------------
 Gradle Wrapper:  
   *  Benefits:   
@@ -11,9 +11,9 @@ Gradle Wrapper:
   *  Step:
     1. Add Task:
         ```groovy
-       task wrapper(type: Wrapper) {
+           task wrapper(type: Wrapper) {
            gradleVersion = '4.4.1'
-       }
+           }
         ```
     2. run: gradle wrapper 
        - 這三個文件（夾）都需要提交到代碼庫中！如此在沒有安裝 Gradle 時，也可以透過 gradlew buiild 來進行專案建置。
@@ -45,7 +45,7 @@ Spring Boot:
           compile("org.springframework.boot:spring-boot-starter-web")
           testCompile("org.springframework.boot:spring-boot-starter-test")
       }
-     ``` 
+     ```
   2. run: gradle booRun
  3. invoke http://localhost:8080/[path]
 ----------------------------------------------------------
@@ -57,7 +57,7 @@ Code Coverage: jacoco
         toolVersion = "0.7.9" // version of jacoco library
         reportsDir = file("$buildDir/customJacocoReportDir") // where to store reports
     }
-    
+
     jacocoTestReport{
         reports{
             xml.enabled false
@@ -72,7 +72,21 @@ Code Coverage: jacoco
 3. run: clean test
 4. run: jacocoTestReport
 5. See the testing result: [your path of project]/build/customJacocoReportDir/test/html/index.html
+----------------------------------------------------------
+CheckStyle: Google
+1. Download [google_checks.xml](https://github.com/checkstyle/checkstyle/blob/master/src/main/resources/google_checks.xml)
+2. Rename to checkstyle.xml
+3. Copy to [proj.]/config/checkstyle/
+4. Setup build.gradle:
+    ```groovy
+    apply plugin: 'checkstyle'
 
+    checkstyle {
+        toolVersion "8.7"
+    }
+    ```
+
+###### Note: If get Unable to create a Checker:Property 'fileExtensions' in module Checker does not exist upgrade the tooVersion from [checkstyle](https://github.com/checkstyle/checkstyle/releases)
 ----------------------------------------------------------
 ## References:
 1. [Chapter 65. The JaCoCo Plugin](https://docs.gradle.org/current/userguide/jacoco_plugin.html)
